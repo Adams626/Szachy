@@ -18,7 +18,7 @@ public class Knight extends Piece{
     //każde pole na mapie ma id<0,64> koń może poruszać się jedynie na pola po L w odległości o podanych poniżej wartościach
     private final int[] CANDIDATE_MOVE_COORDINATES = {-17,-15, -10,-6,6,10,15,17};
 
-    Knight(final int piecePosition, final Alliance pieceAlliance) {
+    public Knight(final Alliance pieceAlliance, final int piecePosition) {
         super(piecePosition, pieceAlliance);
     }
 
