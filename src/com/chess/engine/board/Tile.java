@@ -39,8 +39,12 @@ public abstract class Tile {
     public abstract Piece getPiece();
 
     public static final class EmptyTile extends Tile{
-        EmptyTile(final int coordinate){
+        private EmptyTile(final int coordinate){
             super (coordinate);
+        }
+        @Override
+        public String toString(){
+            return "-";
         }
 
         @Override
@@ -59,6 +63,10 @@ public abstract class Tile {
         private OccupiedTile(int tileCoordinate, final Piece pieceOnTile){
             super(tileCoordinate);
             this.pieceOnTile=pieceOnTile;
+        }
+        @Override
+        public String toString(){
+            return getPiece().getPieceAlliance().isBlack() ? getPiece().toString().toLowerCase(): getPiece().toString();
         }
 
         @Override
