@@ -2,6 +2,8 @@ package com.chess.engine.board;
 
 import com.chess.engine.pieces.Piece;
 
+import static com.chess.engine.board.Board.*;
+
 public abstract class Move {
     final Board board;
     final Piece movedPiece;
@@ -28,10 +30,24 @@ public abstract class Move {
         public MajorMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
             super(board, movedPiece, destinationCoordinate);
         }
-        //tworzy nową plansze przy wykonaniu ruchu
+
         @Override
         public Board execute() {
-            return null;
+            //tworzy nową plansze przy wykonaniu ruchu. Przejdzimey przez wszystkie figury current player i sprawdzimy dostępne figury. Następnie robimy to samo dla drugiego gracza.
+            final Builder builder = new Builder();
+            for(final Piece piece : this.board.currentPlayer().getActivePieces()){
+                //TODO hashcode
+                if(!this.movedPiece.equals(piece)){
+                    builder.setPiece(piece);
+                }
+            }
+            for (final Piece piece : this.board.currentPlayer().getOpponent().getActivePieces()){
+                builder.setPiece(piece);
+            }
+            //robi tuch a następnie przekazuje current player do drugiego gracza
+            builder.setPiece(null);
+            builder.setMoveMaker(this.board.currentPlayer().getAlliance());
+            return builder.build();
         }
     }
     public static final class AttackMove extends Move {
