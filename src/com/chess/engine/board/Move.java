@@ -37,7 +37,7 @@ public abstract class Move {
 
         @Override
         public Board execute() {
-            //tworzy nową plansze przy wykonaniu ruchu. Przejdzimey przez wszystkie figury current player i sprawdzimy dostępne figury. Następnie robimy to samo dla drugiego gracza.
+            //tworzy nową plansze przy wykonaniu ruchu. Przejdziemy przez wszystkie figury current player i sprawdzimy dostępne figury. Następnie robimy to samo dla drugiego gracza.
             final Builder builder = new Builder();
             for(final Piece piece : this.board.currentPlayer().getActivePieces()){
                 //TODO hashcode
